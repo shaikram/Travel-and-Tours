@@ -34,6 +34,13 @@ if(isset($_POST['pre_book'])) {
     $tokenExist = $database->get(TOKEN_TABLE);
     $count = count($tokenExist);
 
+    if($_SERVER['SERVER_NAME'] === 'localhost') {
+        $server_root = 'localhost/travel';
+    } else {
+        $server_root = $_SERVER['DOCUMENT_ROOT'];
+    }
+    
+
 
     for ($i = 0; $i < $count; $i++) { 
         $token = md5($token.rand());
@@ -137,7 +144,7 @@ if(isset($_POST['pre_book'])) {
                         </tr>
                         <tr>
                             <td>
-                                <a href=' https://slec.ph/registration/au/?t=au2212316e33bca1944143ff5b7d536e1de0b23c&email=e3a8bbdd4638397265f88e83a52c22ae8f0ef35018842e13f80b81f3769f839c7cbdd4e997c3b8e759f8d579bb30f6f1adb115059e28d960fa8badfa' 
+                                <a href='$server_root/verify_email.php?t=$token' 
                                 style='
                                 font-weight: bold;
                                 text-decoration: none;
@@ -160,7 +167,7 @@ if(isset($_POST['pre_book'])) {
                                 </span>
                                 <br><br>
                                 <span>
-                                https://slec.ph/registration/au/?t=au2212316e33bca1944143ff5b7d536e1de0b23c&email=e3a8bbdd4638397265f88e83a52c22ae8f0ef35018842e13f80b81f3769f839c7cbdd4e997c3b8e759f8d579bb30f6f1adb115059e28d960fa8badfa
+                                $server_root/verify_email.php?t=$token
                                 </span>
                                 <br><br>
                                 Note: The link will be valid only for 24 hours.
